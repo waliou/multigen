@@ -339,7 +339,7 @@ def evaluate(args, model, tokenizer, evaluate_metrics="ppl", prefix='0'):
     concept_gt_Hit_num = 0
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         
-        batch = tuple(t.to(args.device) for t in batch)
+        #batch = tuple(t.to(args.device) for t in batch)
         
         with torch.no_grad():
             if evaluate_metrics == 'bleu':
@@ -579,7 +579,7 @@ def main():
         torch.distributed.barrier()  # Barrier to make sure only the first process in distributed training download model & vocab
 
     config_class, model_class, tokenizer_class = MODEL_CLASSES[args.model_type]
-    tokenizer = tokenizer_class.from_pretrained(args.model_name_or_path, do_lower_case=False)
+    tokenizer = tokenizer_class.from_pretrained(args.model_name_or_path, do_lower_case=False, vocab_file="../data/vocab.json")
 
     
     model = model_class.from_pretrained(load_from_path, 

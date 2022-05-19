@@ -6,7 +6,7 @@ f.close()
 vocab["<|bos|>"] = len(vocab)
 vocab["<|pad|>"] = len(vocab)
 print(len(vocab))
-f = open('../models/gpt2-small/vocab.json', 'w')
+f = open('../data/vocab.json', 'w')
 vocab = json.dump(vocab, f)
 f.close()
 

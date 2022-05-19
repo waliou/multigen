@@ -91,9 +91,9 @@ class MHDataset(Dataset):
             logger.info("Attention mask: {}".format(ex["attention_mask"].tolist()))
             logger.info("Position: {}".format(ex["src_position_ids"].tolist()))
             logger.info("Target: {}".format([self.tokenizer.decoder[x] for x in ex["target_input_ids"].tolist()]))
-            logger.info("Position: {}".format(ex[4].tolist()))
+            logger.info("Position: {}".format(ex["target_position_ids"].tolist()))
             logger.info("Labels: {}".format([self.tokenizer.decoder[x] for x in (ex["labels"].masked_select(ex["labels"]>=0).tolist())]))
-            logger.info("Gate labels: {}".format(ex[-1].tolist()))
+            logger.info("Gate labels: {}".format(ex["gate_labels"].tolist()))
 
     def __getitem__(self, idx):
         src = self.source[idx]

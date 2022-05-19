@@ -575,6 +575,9 @@ class SequenceGenerator(object):
         result_strs = []
         result_scores = []
         for j, hypo in enumerate(finalized):
+            if len(hypo) == 0:
+                result_strs.append('')
+                continue
             hypo = hypo[0]
             hypo_tokens = hypo['tokens']
             hypo_gates = hypo['gates']
